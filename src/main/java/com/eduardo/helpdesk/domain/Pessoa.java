@@ -35,7 +35,7 @@ public abstract class Pessoa implements Serializable {
 	protected String email;
 	protected String senha;
 	
-	@ElementCollection(fetch = FetchType.EAGER) // Quando fizer um get será retornado alem da lista o usuario tbm
+	@ElementCollection(fetch = FetchType.EAGER) // Sempre que a pessoa for recuperada do bd os seus perfis tbm serão 
 	@CollectionTable(name = "PERFIS")
 	protected Set<Integer> perfis = new HashSet<>();
 	
