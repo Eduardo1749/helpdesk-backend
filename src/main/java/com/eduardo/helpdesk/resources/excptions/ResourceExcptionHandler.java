@@ -1,7 +1,5 @@
 package com.eduardo.helpdesk.resources.excptions;
 
-import java.time.LocalDateTime;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
