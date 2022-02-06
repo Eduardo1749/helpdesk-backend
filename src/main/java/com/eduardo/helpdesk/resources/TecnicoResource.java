@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eduardo.helpdesk.domain.Tecnico;
+import com.eduardo.helpdesk.domain.dtos.TecnicoDTO;
 import com.eduardo.helpdesk.services.TecnicoService;
 
 @RestController
@@ -18,8 +19,8 @@ public class TecnicoResource {
 	private TecnicoService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Tecnico> findById(@PathVariable Integer id){ // O que é um responseEntity? É utilizado qundo você quer representar toda resposta http, com ele você pode controlar qualquer coisa da requisição
+	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){ // O que é um responseEntity? É utilizado qundo você quer representar toda resposta http, com ele você pode controlar qualquer coisa da requisição
 		Tecnico obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new TecnicoDTO(obj));
 	}
 }
