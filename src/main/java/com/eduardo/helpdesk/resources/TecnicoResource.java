@@ -38,7 +38,6 @@ public class TecnicoResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	
 	@PostMapping
 	public ResponseEntity<TecnicoDTO> create(@RequestBody TecnicoDTO objDTO){
 		Tecnico newObj = service.create(objDTO);
