@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.eduardo.helpdesk.domain.CampoInvalidoException;
 import com.eduardo.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.eduardo.helpdesk.services.exceptions.ObjectnotFoundException;
 
@@ -49,3 +50,4 @@ public class ResourceExcptionHandler {
 	}
 	 
 }
+
