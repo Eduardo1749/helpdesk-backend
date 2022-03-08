@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.eduardo.helpdesk.domain.CampoInvalidoException;
 import com.eduardo.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.eduardo.helpdesk.services.exceptions.ObjectnotFoundException;
 
@@ -39,6 +40,13 @@ public class ResourceExcptionHandler {
 			errors.addError(x.getField(), x.getDefaultMessage());
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+	}
+	
+	@ExceptionHandler(CampoInvalidoException.class)
+	public ResponseEntity<StandardError> campoInvalidoExcpetion(CampoInvalidoException ex,HttpServletRequest request){
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+				"Campo inválido", ex.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 	 
 }

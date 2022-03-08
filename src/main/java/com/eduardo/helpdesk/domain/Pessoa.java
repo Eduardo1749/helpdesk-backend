@@ -15,8 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.br.CPF;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import com.eduardo.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,7 +30,6 @@ public abstract class Pessoa implements Serializable {
 	protected Integer id;
 	protected String nome;
 	
-	@CPF
 	@Column(unique = true)
 	protected String cpf;
 	
@@ -116,6 +115,14 @@ public abstract class Pessoa implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
+	@PrePersist
+	@PreUpdate
+	public void prePersist() {
+		if(!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") || !getCpf().matches("\\d{11}")) {
+			throw new CampoInvalidoException("CPF inválido");
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);
@@ -132,4 +139,9 @@ public abstract class Pessoa implements Serializable {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
+//	public static void main(String[] args) {
+//		System.out.println("123.123.123-08".matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}"));
+//	}
 }
+
+
