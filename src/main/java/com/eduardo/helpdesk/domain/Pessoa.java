@@ -118,7 +118,7 @@ public abstract class Pessoa implements Serializable {
 	@PrePersist
 	@PreUpdate
 	public void prePersist() {
-		if(!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") || !getCpf().matches("\\d{11}")) {
+		if(!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") && !getCpf().matches("\\d{11}")) {
 			throw new CampoInvalidoException("CPF inválido");
 		}
 	}
