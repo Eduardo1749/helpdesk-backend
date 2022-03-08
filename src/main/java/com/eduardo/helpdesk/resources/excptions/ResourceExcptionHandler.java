@@ -40,5 +40,12 @@ public class ResourceExcptionHandler {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
 	}
+	
+	@ExceptionHandler(CampoInvalidoException.class)
+	public ResponseEntity<StandardError> campoInvalidoExcpetion(CampoInvalidoException ex,HttpServletRequest request){
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+				"Campo inválido", ex.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
 	 
 }
