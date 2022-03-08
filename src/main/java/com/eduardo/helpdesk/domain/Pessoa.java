@@ -30,7 +30,6 @@ public abstract class Pessoa implements Serializable {
 	protected Integer id;
 	protected String nome;
 	
-	@CPF(message = "Número do registro de contribuinte individual brasileiro(CPF) invalido.")
 	@Column(unique = true)
 	protected String cpf;
 	
@@ -116,6 +115,14 @@ public abstract class Pessoa implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
+	@PrePersist
+	@PreUpdate
+	public void prePersist() {
+		if(!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") || !getCpf().matches("\\d{11}")) {
+			throw new CampoInvalidoException("CPF inválido");
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);
