@@ -19,11 +19,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import com.eduardo.helpdesk.domain.enums.Perfil;
+import com.eduardo.helpdesk.utils.Validacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public abstract class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
+	Validacao validacaoCPF = new Validacao();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Quem vai definir o Id é o banco e não nós
@@ -118,10 +120,11 @@ public abstract class Pessoa implements Serializable {
 	@PrePersist
 	@PreUpdate
 	public void prePersist() {
-		if(!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") || !getCpf().matches("\\d{11}")) {
+		if((!getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}") && !getCpf().matches("\\d{11}")) || validacaoCPF.cpfEValido(getCpf())) {
 			throw new CampoInvalidoException("CPF inválido");
 		}
 	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -139,9 +142,6 @@ public abstract class Pessoa implements Serializable {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
-//	public static void main(String[] args) {
-//		System.out.println("123.123.123-08".matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}"));
-//	}
 }
 
 
