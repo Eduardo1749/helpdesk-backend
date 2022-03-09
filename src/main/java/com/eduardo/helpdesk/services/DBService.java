@@ -33,11 +33,11 @@ public class DBService {
 	private BCryptPasswordEncoder encoder;
 	
 	public void instanciaDB() {
-		Tecnico tec1 = new Tecnico(null, "Valdir cezar", "63653230268", "valdir@mail.com", encoder.encode("123"));
+		Tecnico tec1 = new Tecnico(null, "Valdir cezar", "87499984044", "valdir@mail.com", encoder.encode("123"));
 		tec1.addPerfil(Perfil.ADMIN);
-		Tecnico tec2 = new Tecnico(null, "Fabiano Pereira", "39252161031", "fabiano@mail.com", encoder.encode("123"));
-		Tecnico tec3 = new Tecnico(null, "Daihana Ribeiro", "69171650008", "daihana@mail.com", encoder.encode("123"));
-		Tecnico tec4 = new Tecnico(null, "Eduardo Santos", "33940429082", "eduardo@mail.com", encoder.encode("123"));
+		Tecnico tec2 = new Tecnico(null, "Fabiano Pereira", "15156545084", "fabiano@mail.com", encoder.encode("123"));
+		Tecnico tec3 = new Tecnico(null, "Daihana Ribeiro", "53879324077", "daihana@mail.com", encoder.encode("123"));
+		Tecnico tec4 = new Tecnico(null, "Eduardo Santos", "20035965002", "eduardo@mail.com", encoder.encode("123"));
 		tec4.addPerfil(Perfil.ADMIN);
 		Tecnico tec5 = new Tecnico(null, "Marcos Gabriel", "24281358056", "gabriel@mail.com", encoder.encode("123"));
 		Tecnico tec6 = new Tecnico(null, "Victoria Luisa", "73459437049", "victoria@mail.com", encoder.encode("123"));

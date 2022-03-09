@@ -1,10 +1,10 @@
 package com.eduardo.helpdesk.utils;
+
 public class Validacao {
 
-	public Boolean cpfEValido(String cpf) {
+	public static Boolean cpfEValido(String cpf) {
 		if (cpf != null) {
-			String cpfSoNumero = cpf.replace(".", "");
-			cpfSoNumero = cpfSoNumero.replace("-", "");
+			String cpfSoNumero = cpf.replace(".", "").replace("-", "");
 			if (cpfSoNumero.matches("\\d{11}")) {
 				int primeiroDigitoVerificador = ((int) cpfSoNumero.charAt(9)) - 48;
 				int segundoDigitoVerificador = ((int) cpfSoNumero.charAt(10)) - 48;
@@ -17,7 +17,7 @@ public class Validacao {
 		return false;
 	}
 
-	private int getPrimeiroDigito(String cpf) {
+	private static int getPrimeiroDigito(String cpf) {
 		int value = 0;
 		int valuePosicao = 0;
 		int multiplicador = 10;
@@ -34,7 +34,7 @@ public class Validacao {
 		}
 	}
 
-	private int getSegundoDigito(String cpf) {
+	private static int getSegundoDigito(String cpf) {
 		int value = 0;
 		int valuePosicao = 0;
 		int multiplicador = 11;
@@ -53,8 +53,8 @@ public class Validacao {
 
 	public static void main(String[] args) {
 		Validacao v = new Validacao();
-		String cpf = "023.284.486-07";
-		System.out.println(v.cpfEValido(cpf));
+		String cpf = "02328448607";
+		System.out.println(Validacao.cpfEValido(cpf));
 
 	}
 }
