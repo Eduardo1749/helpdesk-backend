@@ -51,10 +51,4 @@ public class Validacao {
 		}
 	}
 
-	public static void main(String[] args) {
-		Validacao v = new Validacao();
-		String cpf = "02328448607";
-		System.out.println(Validacao.cpfEValido(cpf));
-
-	}
 }
